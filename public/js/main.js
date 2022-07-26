@@ -6,22 +6,29 @@ let btntous = document.querySelector('#trier').querySelectorAll('button')[0]
 let btnencours = document.querySelector('#trier').querySelectorAll('button')[1]
 let btnfinii = document.querySelector('#trier').querySelectorAll('button')[2]
 
+
+//quand je clique sur le boutin h1('trier') cela m'affiche les trois bouton pour pouvoir trier
 h1.addEventListener('click', function(){
     btntous.className = ''
     btnencours.className = ''
     btnfinii.className = ''
 })
 
+// c'est un addevenlistener qui permet de tout commencer car cest le bouton qui permet de creer les div
 btnA.addEventListener('click', function(){
 
+    //je creer les div 
     let div = document.createElement('div')
-
     div.className = 'divN'
     div.id = 'encours'
 
+    //je crrer les p
     let p = document.createElement('p')
     p.innerText = inputA.value
+    inputA.value = ''
 
+
+    //div ou y aura les bouton 
     let divbtn = document.createElement('div')
     divbtn.className = 'divbtn'
 
@@ -39,15 +46,19 @@ btnA.addEventListener('click', function(){
     divbtn.insertAdjacentElement('afterbegin', btnmodifier)
     divbtn.insertAdjacentElement('afterbegin', btnfini)
 
-    inputA.value = ''
 
     div.insertAdjacentElement('afterbegin', divbtn)
     div.insertAdjacentElement('afterbegin', p)
     sectionT.insertAdjacentElement('beforeend', div)
 
+
+    //le bouton qui permet de confirmer la modification du p
     let btnok = document.createElement('button')
     let inputmodifier = document.createElement('input')
+
+
     btnmodifier.addEventListener('click', function(){
+        //quand je clique sur le bouton modier , il disparait direcrement grace au display none
         btnmodifier.className = 'displaynone'
         btnfini.className = 'displaynone'
 
@@ -57,6 +68,7 @@ btnA.addEventListener('click', function(){
         btnok.innerText = 'ok'
         btnok.className = 'ok'
 
+        //en appuyant sur le bouton modifier j'insert imediatement l'input pour pouvoir ecrire la modification et le bouton pour confirmer
         btnfini.insertAdjacentElement('afterend', btnok)
         btnfini.insertAdjacentElement('afterend', inputmodifier)
 
@@ -105,6 +117,14 @@ btnA.addEventListener('click', function(){
         btnfini.innerText = 'terminé'
         div.className = 'color'
         div.id = 'fini'
+        btnmodifier.className ='displaynone'
+
+        btnfini.addEventListener('dblclick', function(){
+            btnfini.innerText = 'fini'
+            div.className = 'divN'
+            btnmodifier.className =''
+
+        })
     })
 
 
@@ -133,10 +153,19 @@ btnA.addEventListener('click', function(){
                         }
                     })
 
+                    
+
                 }
                 else if(btnfl[i].innerText == 'terminé'){
                     let parent = btnfl[i].parentElement
                     parent.parentElement.className = 'color'
+
+                    btnfl[i].addEventListener('dblclick', function(){
+                        btnfl[i].innerText = 'fini'
+                        div.className = 'divN'
+                        btnmodifier.className =''
+            
+                    })
                 }
             }
             })
@@ -170,7 +199,20 @@ btnA.addEventListener('click', function(){
                         let parent = btnfl[i].parentElement
                         parent.parentElement.className = 'divN'
                     }
-            }
+                }
+            })
+
+            btntous.addEventListener('click', function(){
+                for (let i = 0; i < btnfl.length; i++) {
+
+                    let parent = btnfl[i].parentElement
+                    if(parent.parentElement.className == 'displaynone'){
+                        parent.parentElement.className = 'divN'
+                    }
+                    else if(btnfl[i].innerText == 'terminé'){
+                        parent.parentElement.className = 'color'
+                    }                    
+                }
             })
         
     
