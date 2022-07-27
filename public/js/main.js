@@ -117,8 +117,9 @@ btnA.addEventListener('click', function(){
     btnfini.addEventListener('click', function(){
         btnfini.innerText = 'terminé'
         div.className = 'color'
-        div.id = 'fini'
+        // div.id = 'fini'
         btnmodifier.className ='displaynone'
+        
 
         btnfini.addEventListener('dblclick', function(){
             btnfini.innerText = 'fini'
@@ -160,6 +161,10 @@ btnA.addEventListener('click', function(){
                 else if(btnfl[i].innerText == 'terminé'){
                     let parent = btnfl[i].parentElement
                     parent.parentElement.className = 'color'
+                    if(parent.parentElement.id == 'supprimer'){
+                        parent.parentElement.className = 'displaynone'
+            
+                    }
 
                     btnfl[i].addEventListener('dblclick', function(){
                         btnfl[i].innerText = 'fini'
@@ -212,7 +217,11 @@ btnA.addEventListener('click', function(){
                     }
                     else if(btnfl[i].innerText == 'terminé'){
                         parent.parentElement.className = 'color'
-                    }                    
+                    }   
+                    if(parent.parentElement.id == 'supprimer'){
+                        parent.parentElement.className = 'displaynone'
+            
+                    }                 
                 }
             })
         
