@@ -103,6 +103,7 @@ btnA.addEventListener('click', function(){
         divbtn.insertAdjacentElement('beforeend', jeveuxpassupprimer)
         jeveuxsupprimer.addEventListener('click', function(){
             div.className = 'displaynone'
+            div.id = 'supprimer'
         })
         jeveuxpassupprimer.addEventListener('click', function(){
             btnmodifier.className = ''
